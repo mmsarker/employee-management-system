@@ -18,11 +18,5 @@
         public string DepartmentName { get; set; }
 
         public Guid DepartmentId { get; set; }
-    }
-
-    public class DepartmentViewModel
-    {
-        public Guid Id { get; set; }
-        public Guid Name { get; set; }
-    }
+    }   
 }

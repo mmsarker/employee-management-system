@@ -5,6 +5,9 @@
 
 <h1 class="mb-3">List of Employees</h1>
 
+<div>
+    <a href="/Employees/Add">Add New</a>
+</div>
 @if (Model.employeeListViewModel != null && Model.employeeListViewModel.Employees != null && Model.employeeListViewModel.Employees.Any())
 {
     <table class="table">
@@ -34,6 +37,7 @@
                 <td>@employee.Email</td>
                 <td>@employee.DepartmentName</td>
                 <td>@employee.DateOfBirth</td>
+                <td><a href="/Employees/Edit/@employee.Id"></a></td>
             }
         </tbody>
     </table>

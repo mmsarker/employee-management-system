@@ -2,3 +2,25 @@
 @model EmployeeManagemntWeb.Pages.Employees.AddEmployeeModel
 @{
 }
+
+<form method="post">
+    <h1 class="mb-3">Add new Employee</h1>
+    <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input type="text" class="form-control" asp-for="addEmployeeViewModel.Name" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="text" class="form-control" asp-for="addEmployeeViewModel.Email" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input type="date" class="form-control" asp-for="addEmployeeViewModel.DateOfBirth" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Name</label>
+        <select asp-for="addEmployeeViewModel.DepartmentId" asp-items="@Model.Departments"></select>
+        @*<input type="text" class="form-control" asp-for="addEmployeeViewModel.DepartmentId" />*@
+    </div>
+</form>

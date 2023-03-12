@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace EmpoweID.EmployeeManagementApi.Controllers
 {
     [ApiController]
-    [Route("api/employee")]
+    [Route("api/employees")]
     public class EmployeeController : Controller
     {
         private readonly IQueryHandler<GetEmployeeByIdQuery, GetEmployeeByIdQueryResult> _getEmployeeByIdQueryHandler;

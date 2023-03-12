@@ -10,16 +10,15 @@ namespace EmployeeManagemntWeb.Pages.Employees
         [BindProperty]
         public EmployeeListViewModel employeeListViewModel { get; set; }
 
-        private IGenericHttpClient _genericHttpClient;        
+        private IGenericHttpClient _genericHttpClient;
         public EmployeeListModel(IConfiguration configuration)
         {
-            var baseUrl = configuration.GetSection("BaseAPIURL").Value;
-            _genericHttpClient = new GenericHttpClient(baseUrl);
+            _genericHttpClient = new GenericHttpClient(configuration);
         }
-        
+
         public async Task OnGet()
         {
-            employeeListViewModel = await this._genericHttpClient.GetAsync<EmployeeListViewModel>("employee/search");
+            employeeListViewModel = await this._genericHttpClient.GetAsync<EmployeeListViewModel>("employees/search");
 
         }
     }

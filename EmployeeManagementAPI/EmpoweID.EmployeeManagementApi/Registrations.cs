@@ -10,7 +10,10 @@ namespace EmpoweID.EmployeeManagementApi
     {
         public static void RegisterEmployeeManagemntServices(this IServiceCollection services)
         {
+            services.AddScoped<IDepartmentRepository, DepartmentRepository>();
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+
+            services.AddScoped<IQueryHandler<GetAllDepartmentsQuery, GetAllDepartmentsQueryResult>, GetAllDepartmentsQueryHandler>();
             services.AddScoped<IQueryHandler<GetEmployeeByIdQuery, GetEmployeeByIdQueryResult>, GetEmployeeByIdQueryHandler>();
             services.AddScoped<IQueryHandler<SearchEmployeeQuery, SearchEmployeeQueryResult>, SearchEmployeeQueryHandler>();
             services.AddScoped<ICommandHandler<AddEmployeeRequest, AddEmployeeResult>, AddEmployeeCommandHandler>();

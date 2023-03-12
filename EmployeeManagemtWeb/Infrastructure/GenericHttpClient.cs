@@ -5,9 +5,9 @@ namespace EmployeeManagemntWeb.Infrastructure
     public class GenericHttpClient : IGenericHttpClient
     {
         private readonly string _baseApiUrl;
-        public GenericHttpClient(string baseUrl)
-        {
-            this._baseApiUrl = baseUrl;
+        public GenericHttpClient(IConfiguration configuration)
+        {               
+            this._baseApiUrl =  configuration.GetSection("BaseAPIURL").Value;
         }
 
         public async Task<TResponse> GetAsync<TResponse>(string url)

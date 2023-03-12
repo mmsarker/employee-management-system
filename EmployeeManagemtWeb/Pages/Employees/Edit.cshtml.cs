@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace EmployeeManagemntWeb.Pages.Employees
 {
-    public class UpdateEmployeeModel : PageModel
+    public class EditEmployeeModel : PageModel
     {
         public void OnGet()
         {
