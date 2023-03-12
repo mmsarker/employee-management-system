@@ -26,6 +26,9 @@
                 <th>
                     Date of Birth
                 </th>
+                <th>
+                    Action
+                </th>
             </tr>
         </thead>
 
@@ -35,9 +38,9 @@
                 <tr></tr>
                 <td>@employee.Name</td>
                 <td>@employee.Email</td>
-                <td>@employee.DepartmentName</td>
+                @*<td>@employee.DepartmentName</td>*@
                 <td>@employee.DateOfBirth</td>
-                <td><a href="/Employees/Edit/@employee.Id"></a></td>
+                <td><a href="/Employees/Edit/@employee.Id" class="btn btn-dark">Edit</a></td>
             }
         </tbody>
     </table>

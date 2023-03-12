@@ -68,6 +68,7 @@ namespace EmpoweID.EmployeeManagement.Data.Repositories
         public async Task<Employee> UpdateEmployeeAsync(Employee employee)
         {
             this._employeeDbContext.Attach(employee);
+            this._employeeDbContext.Entry(employee).State = EntityState.Modified;
             await this._employeeDbContext.SaveChangesAsync();
             return employee;
         }

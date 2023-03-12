@@ -24,7 +24,7 @@ namespace EmpoweID.EmployeeManagement.Core.CommandHandlers
 
             var employee = new Employee
             {
-                Id = Guid.NewGuid(),
+                Id =command.Id,
                 Name = command.Name,
                 DateOfBirth = command.DateOfBirth,
                 DepartmentId = command.DepartmentId,

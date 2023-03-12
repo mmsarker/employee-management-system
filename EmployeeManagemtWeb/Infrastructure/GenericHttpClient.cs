@@ -27,12 +27,13 @@ namespace EmployeeManagemntWeb.Infrastructure
             return await GetResponseData<TResponse>(response);
         }
 
-        public async Task<TResponse> PutAsync<Trequest, TResponse>(string url, Trequest payload)
+        public async Task PutAsync<Trequest>(string url, Trequest payload)
         {
             var httpClient = new HttpClient();
             url = this._baseApiUrl + url;
             var response = await httpClient.PutAsJsonAsync(url, payload);
-            return await GetResponseData<TResponse>(response);
+            response.EnsureSuccessStatusCode();
+            //return await GetResponseData<TResponse>(response);
         }
 
         public async Task DeleteAsync(string url)

@@ -59,9 +59,10 @@ namespace EmpoweID.EmployeeManagementApi.Controllers
 
         
         [HttpPut]
+        [Route("{id:guid}")]
         public async Task<IActionResult> UpdateEmployee([FromRoute] Guid id, [FromBody] UpdateEmployeeRequest request)
         {
-
+            request.Id = id;
             var response = await this._updateEmployeeCommandHandler.HandleAsync(request);
             return Ok(response);
         }
