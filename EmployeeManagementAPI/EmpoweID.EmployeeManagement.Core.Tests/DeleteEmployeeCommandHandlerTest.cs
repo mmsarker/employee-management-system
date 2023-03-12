@@ -28,18 +28,17 @@ namespace EmpoweID.EmployeeManagement.Core.Tests
 
             var request = new DeleteEmployeeRequest { Id = Guid.NewGuid() };
             var result = await _handler.HandleAsync(request);
-            
+
             Assert.NotNull(result);
         }
 
         [Fact]
         public async void DeleteEmployeeCommandHandler_Should_Throw_Exeption_When_Entity_Not_Exist()
         {
-            //_employeeRepositoryMock.Setup(x => x.GetEmployeeByIdAsync(It.IsAny<Guid>())).ReturnsAsync(null);
             _employeeRepositoryMock.Setup(x => x.DeleteEmployeeAsync(It.IsAny<Guid>())).Returns(Task.CompletedTask);
 
             var request = new DeleteEmployeeRequest { Id = Guid.NewGuid() };
-            var result = Assert.ThrowsAsync<Exception>( async () => await _handler.HandleAsync(request));         
+            var result = Assert.ThrowsAsync<Exception>(async () => await _handler.HandleAsync(request));
         }
     }
 }
