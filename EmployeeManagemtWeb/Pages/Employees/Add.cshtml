@@ -11,17 +11,16 @@
     </div>
 
     <div class="mb-3">
-        <label class="form-label">Email</label>
+        <label class="form-label">Email Address</label>
         <input type="text" class="form-control" asp-for="addEmployeeViewModel.Email" />
     </div>
     <div class="mb-3">
-        <label class="form-label">Name</label>
+        <label class="form-label">Date of Birth</label>
         <input type="date" class="form-control" asp-for="addEmployeeViewModel.DateOfBirth" />
     </div>
     <div class="mb-3">
-        <label class="form-label">Name</label>
-        <select class="form-select" asp-for="addEmployeeViewModel.DepartmentId" asp-items="@Model.Departments"></select>
-        @*<input type="text" class="form-control" asp-for="addEmployeeViewModel.DepartmentId" />*@
+        <label class="form-label">Department</label>
+        <select class="form-select" asp-for="addEmployeeViewModel.DepartmentId" asp-items="@Model.Departments"></select>        
     </div>
     <br />
     <div class="mb-3">
