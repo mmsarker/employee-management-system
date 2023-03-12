@@ -16,24 +16,46 @@ namespace EmpoweID.EmployeeManagement.Data.Repositories
             this._employeeDbContext = employeeDbContext;
         }
 
-        public async Task<List<Employee>> GetAllEmployees()
+        public async Task<List<Employee>> GetAllEmployeesAsync()
         {
             return await this._employeeDbContext.Employees.ToListAsync();
         }
 
-        public async Task<Employee> GetEmployeeById(int id)
+        public async Task<Employee> GetEmployeeByIdAsync(Guid id)
         {
             return await this._employeeDbContext.Employees.FindAsync(id);
         }
 
-        public async Task<Employee> AddEmployee(Employee employee)
+        public Task<List<Employee>> GetEmployeesAsync(string? name, string? email, string? department)
+        {
+            IQueryable<Employee> employees = this._employeeDbContext.Employees;
+
+            if (!string.IsNullOrEmpty(name))
+            {
+                employees = employees.Where(x => x.Name == name);
+            }
+
+            if (!string.IsNullOrEmpty(email))
+            {
+                employees = employees.Where(x => x.Email == email);
+            }
+
+            if (string.IsNullOrEmpty(department))
+            {
+                employees = employees.Where(x => x.Department.Name == department);
+            }
+
+            return employees.ToListAsync();
+        }
+
+        public async Task<Employee> AddEmployeeAsync(Employee employee)
         {
             this._employeeDbContext.Employees.Add(employee);
             await this._employeeDbContext.SaveChangesAsync();
             return employee;
         }
 
-        public async Task DeleteEmployee(int id)
+        public async Task DeleteEmployeeAsync(Guid id)
         {
             var employee = this._employeeDbContext.Employees.Find(id);
             if (employee != null)
@@ -43,7 +65,7 @@ namespace EmpoweID.EmployeeManagement.Data.Repositories
             }
         }
 
-        public async Task<Employee> UpdateEmployee(Employee employee)
+        public async Task<Employee> UpdateEmployeeAsync(Employee employee)
         {
             this._employeeDbContext.Attach(employee);
             await this._employeeDbContext.SaveChangesAsync();

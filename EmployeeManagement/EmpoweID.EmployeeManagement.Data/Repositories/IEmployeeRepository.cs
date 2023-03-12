@@ -9,10 +9,11 @@ namespace EmpoweID.EmployeeManagement.Data.Repositories
 {
     public interface IEmployeeRepository
     {
-        Task<List<Employee>> GetAllEmployees();
-        Task<Employee> GetEmployeeById(int id);
-        Task DeleteEmployee(int id);
-        Task<Employee> AddEmployee(Employee employee);
-        Task<Employee> UpdateEmployee(Employee employee);
+        Task<List<Employee>> GetAllEmployeesAsync();
+        Task<Employee> GetEmployeeByIdAsync(Guid id);
+        Task<List<Employee>> GetEmployeesAsync(string? name, string? email, string? department);        
+        Task DeleteEmployeeAsync(Guid id);
+        Task<Employee> AddEmployeeAsync(Employee employee);
+        Task<Employee> UpdateEmployeeAsync(Employee employee);
     }
 }

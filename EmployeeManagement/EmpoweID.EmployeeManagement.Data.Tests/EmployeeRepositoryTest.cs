@@ -28,7 +28,7 @@ namespace EmpoweID.EmployeeManagement.Data.Tests
             dbContext.SaveChanges();
 
             var employeeRepository = new EmployeeRepository(dbContext);
-            var employees = await employeeRepository.GetAllEmployees();
+            var employees = await employeeRepository.GetAllEmployeesAsync();
             Assert.NotNull(employees);
             Assert.Equal(1, employees.Count);
             
@@ -41,7 +41,7 @@ namespace EmpoweID.EmployeeManagement.Data.Tests
             var employeerepository = new EmployeeRepository(dbContext);
             var employee = TestDataHelper.CreateNewEmployee();
 
-            await employeerepository.AddEmployee(employee);
+            await employeerepository.AddEmployeeAsync(employee);
 
             var employeeDb = await dbContext.Employees.FindAsync(employee.Id);
             Assert.NotNull(employeeDb);
