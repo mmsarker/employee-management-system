@@ -10,6 +10,15 @@ namespace EmployeeManagemntWeb.Pages.Employees
         [BindProperty]
         public EmployeeListViewModel employeeListViewModel { get; set; }
 
+        [BindProperty(SupportsGet =true)]
+        public string? SearchName { get; set; }
+        
+        [BindProperty(SupportsGet = true)]
+        public string? SearchEmail { get; set; }
+        
+        [BindProperty(SupportsGet = true)]
+        public string? SearchDepartmentName { get; set; }
+
         private IGenericHttpClient _genericHttpClient;
         public EmployeeListModel(IConfiguration configuration)
         {
@@ -18,7 +27,8 @@ namespace EmployeeManagemntWeb.Pages.Employees
 
         public async Task OnGet()
         {
-            employeeListViewModel = await this._genericHttpClient.GetAsync<EmployeeListViewModel>("employees/search");
+            employeeListViewModel = await this._genericHttpClient.GetAsync<EmployeeListViewModel>
+                ($"employees/search?name={SearchName}&email={SearchEmail}&department={SearchDepartmentName}");
 
         }
     }

@@ -32,17 +32,17 @@ namespace EmpoweID.EmployeeManagement.Data.Repositories
 
             if (!string.IsNullOrEmpty(name))
             {
-                employees = employees.Where(x => x.Name == name);
+                employees = employees.Where(x => x.Name.Contains(name));
             }
 
             if (!string.IsNullOrEmpty(email))
             {
-                employees = employees.Where(x => x.Email == email);
+                employees = employees.Where(x => x.Email.Contains(email));
             }
 
             if (!string.IsNullOrEmpty(department))
             {
-                employees = employees.Where(x => x.Department.Name == department);
+                employees = employees.Where(x => x.Department.Name.Contains(department));
             }
 
             return employees.ToListAsync();
@@ -63,6 +63,8 @@ namespace EmpoweID.EmployeeManagement.Data.Repositories
                 this._employeeDbContext.Remove(employee);
                 await this._employeeDbContext.SaveChangesAsync();
             }
+
+            throw new Exception("Invalid Id provided");
         }
 
         public async Task<Employee> UpdateEmployeeAsync(Employee employee)
