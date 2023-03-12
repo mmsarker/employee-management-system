@@ -63,8 +63,6 @@ namespace EmpoweID.EmployeeManagement.Data.Repositories
                 this._employeeDbContext.Remove(employee);
                 await this._employeeDbContext.SaveChangesAsync();
             }
-
-            throw new Exception("Invalid Id provided");
         }
 
         public async Task<Employee> UpdateEmployeeAsync(Employee employee)

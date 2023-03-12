@@ -7,23 +7,12 @@ using Xunit;
 namespace EmpoweID.EmployeeManagement.Data.Tests
 {
     public class EmployeeRepositoryTest
-    {   
+    {
         [Fact]
         public async Task GetAllEmployees_Should_Return_Employees()
         {
             var dbContext = TestDataHelper.GetEmployeeDbContext();
-            dbContext.Employees.Add(new Employee
-            {
-                Id = Guid.NewGuid(),
-                Name = "Employee 1",
-                Email = "test@testemployeeaasas.com",
-                DateOfBirth = new DateTime(1990,1,1),
-                Department = new Department
-                {
-                    Id= Guid.NewGuid(),
-                    Name ="Department One"
-                }                
-            });
+            TestDataHelper.CreateNewEmployee("Test1", "department1");
 
             dbContext.SaveChanges();
 
@@ -31,7 +20,7 @@ namespace EmpoweID.EmployeeManagement.Data.Tests
             var employees = await employeeRepository.GetAllEmployeesAsync();
             Assert.NotNull(employees);
             Assert.Equal(1, employees.Count);
-            
+
         }
 
         [Fact]
@@ -39,12 +28,44 @@ namespace EmpoweID.EmployeeManagement.Data.Tests
         {
             var dbContext = TestDataHelper.GetEmployeeDbContext();
             var employeerepository = new EmployeeRepository(dbContext);
-            var employee = TestDataHelper.CreateNewEmployee();
+            var employee = TestDataHelper.CreateNewEmployee("Test1", "department1");
 
             await employeerepository.AddEmployeeAsync(employee);
 
             var employeeDb = await dbContext.Employees.FindAsync(employee.Id);
             Assert.NotNull(employeeDb);
+        }
+
+        [Fact]
+        public async Task GetEmployeesAsync_Shoud_Filter_By_Name()
+        {
+            var dbContext = TestDataHelper.GetEmployeeDbContext();
+            var employee1 = TestDataHelper.CreateNewEmployee("Test1", "department1");
+            var employee2 = TestDataHelper.CreateNewEmployee("Best2", "department2");
+            dbContext.Employees.Add(employee1);
+            dbContext.Employees.Add(employee2);
+            dbContext.SaveChanges();
+
+            var employeerepository = new EmployeeRepository(dbContext);
+            var response = await employeerepository.GetEmployeesAsync("Test1", null, null);
+            Assert.NotNull(response);
+            Assert.Equal(response.Count, 1);
+        }
+
+        [Fact]
+        public async Task GetEmployeesAsync_Shoud_Filter_By__Department_Name()
+        {
+            var dbContext = TestDataHelper.GetEmployeeDbContext();
+            var employee1 = TestDataHelper.CreateNewEmployee("Test1", "department1");
+            var employee2 = TestDataHelper.CreateNewEmployee("Best2", "department2");
+            dbContext.Employees.Add(employee1);
+            dbContext.Employees.Add(employee2);
+            dbContext.SaveChanges();
+
+            var employeerepository = new EmployeeRepository(dbContext);
+            var response = await employeerepository.GetEmployeesAsync(null, "Department2", null);
+            Assert.NotNull(response);
+            Assert.Equal(response.Count, 1);
         }
     }
 }

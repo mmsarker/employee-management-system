@@ -19,18 +19,18 @@ namespace EmpoweID.EmployeeManagement.Data.Tests
         }
 
 
-        public static Employee CreateNewEmployee()
+        public static Employee CreateNewEmployee(string name, string departmentName)
         {
             return new Employee
             {
                 Id = Guid.NewGuid(),
-                Name = "Employee 1",
+                Name = name,
                 Email = "test@testemployeeaasas.com",
                 DateOfBirth = new DateTime(1990, 1, 1),
                 Department = new Department
                 {
                     Id = Guid.NewGuid(),
-                    Name = "Department One"
+                    Name = departmentName
                 }
             };
         }
