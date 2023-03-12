@@ -30,5 +30,12 @@ namespace EmployeeManagemntWeb.Pages.Employees
                 Value = x.Id.ToString()
             }).ToList();
         }
+
+        public async Task OnPost()
+        {
+            var response =  await _genericHttpClient.PostAsync<AddEmployeeViewModel, AddEmployeeResponseModel>("employees", addEmployeeViewModel);
+
+            Response.Redirect("");
+        }
     }
 }

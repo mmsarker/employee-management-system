@@ -10,4 +10,9 @@
 
         public Guid DepartmentId { get; set; }
     }
+    
+    public class AddEmployeeResponseModel
+    {
+        public Guid Id { get; set; }
+    }
 }
