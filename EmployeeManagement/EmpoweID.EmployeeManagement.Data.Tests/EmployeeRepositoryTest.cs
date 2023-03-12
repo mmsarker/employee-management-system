@@ -11,7 +11,7 @@ namespace EmpoweID.EmployeeManagement.Data.Tests
         [Fact]
         public async Task GetAllEmployees_Should_Return_Employees()
         {
-            var dbContext = TestDbContextProvider.GetEmployeeDbContext();
+            var dbContext = TestDataHelper.GetEmployeeDbContext();
             dbContext.Employees.Add(new Employee
             {
                 Id = Guid.NewGuid(),
@@ -32,6 +32,19 @@ namespace EmpoweID.EmployeeManagement.Data.Tests
             Assert.NotNull(employees);
             Assert.Equal(1, employees.Count);
             
+        }
+
+        [Fact]
+        public async Task AddEmployee_Shoud_Create_New_employee()
+        {
+            var dbContext = TestDataHelper.GetEmployeeDbContext();
+            var employeerepository = new EmployeeRepository(dbContext);
+            var employee = TestDataHelper.CreateNewEmployee();
+
+            await employeerepository.AddEmployee(employee);
+
+            var employeeDb = await dbContext.Employees.FindAsync(employee.Id);
+            Assert.NotNull(employeeDb);
         }
     }
 }
