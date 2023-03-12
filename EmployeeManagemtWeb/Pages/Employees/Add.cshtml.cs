@@ -34,8 +34,7 @@ namespace EmployeeManagemntWeb.Pages.Employees
         public async Task OnPost()
         {
             var response =  await _genericHttpClient.PostAsync<AddEmployeeViewModel, AddEmployeeResponseModel>("employees", addEmployeeViewModel);
-
-            Response.Redirect("");
+            Response.Redirect("/Employees/Index");
         }
     }
 }

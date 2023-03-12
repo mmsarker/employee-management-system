@@ -39,7 +39,7 @@ namespace EmployeeManagemntWeb.Pages.Employees
             Response.Redirect("/Employees/Index");
         }
 
-        public async Task OnDeleteUpdate(Guid id)
+        public async Task OnPostDelete(Guid id)
         {
             await this._genericHttpClient.DeleteAsync($"Employees/{id}");
             Response.Redirect("/Employees/Index");

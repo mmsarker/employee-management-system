@@ -68,10 +68,11 @@ namespace EmpoweID.EmployeeManagementApi.Controllers
         }
         
         [HttpDelete]
-        public async Task<IActionResult> DeleteEmployee([FromRoute] Guid id, [FromBody] UpdateEmployeeRequest request)
+        [Route("{id:guid}")]
+        public async Task<IActionResult> DeleteEmployee([FromRoute] DeleteEmployeeRequest deleteEmployeeRequest)
         {
 
-            var response = await this._updateEmployeeCommandHandler.HandleAsync(request);
+            var response = await this._deleteEmployeeCommandHandler.HandleAsync(deleteEmployeeRequest);
             return Ok(response);
         }                
     }
