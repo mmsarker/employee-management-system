@@ -11,9 +11,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.RegisterEmployeeManagemntServices();
+
+//builder.Services.AddDbContext<EmployeeDbContext>(options =>
+//{
+//    options.UseInMemoryDatabase("EmployeeDB");
+//});
+
 builder.Services.AddDbContext<EmployeeDbContext>(options =>
 {
-    options.UseInMemoryDatabase("EmployeeDB");
+    options.UseSqlServer(builder.Configuration.GetConnectionString("EmployeeDbConnectionString"));
 });
 
 var app = builder.Build();
