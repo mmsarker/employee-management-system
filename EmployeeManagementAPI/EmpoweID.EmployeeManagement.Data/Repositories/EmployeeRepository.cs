@@ -28,7 +28,7 @@ namespace EmpoweID.EmployeeManagement.Data.Repositories
 
         public Task<List<Employee>> GetEmployeesAsync(string? name, string? email, string? department)
         {
-            IQueryable<Employee> employees = this._employeeDbContext.Employees;
+            IQueryable<Employee> employees = this._employeeDbContext.Employees.Include("Department");
 
             if (!string.IsNullOrEmpty(name))
             {
@@ -40,7 +40,7 @@ namespace EmpoweID.EmployeeManagement.Data.Repositories
                 employees = employees.Where(x => x.Email == email);
             }
 
-            if (string.IsNullOrEmpty(department))
+            if (!string.IsNullOrEmpty(department))
             {
                 employees = employees.Where(x => x.Department.Name == department);
             }

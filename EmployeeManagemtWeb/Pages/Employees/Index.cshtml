@@ -1,0 +1,46 @@
+﻿@page
+@model EmployeeManagemntWeb.Pages.Employees.EmployeeListModel
+@{
+}
+
+<h1 class="mb-3">List of Employees</h1>
+
+@if (Model.employeeListViewModel != null && Model.employeeListViewModel.Employees != null && Model.employeeListViewModel.Employees.Any())
+{
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Department
+                </th>
+                <th>
+                    Date of Birth
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var employee in Model.employeeListViewModel.Employees)
+            {
+                <tr></tr>
+                <td>@employee.Name</td>
+                <td>@employee.Email</td>
+                <td>@employee.DepartmentName</td>
+                <td>@employee.DateOfBirth</td>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h2>
+       No Employees Found 
+    </h2>
+}

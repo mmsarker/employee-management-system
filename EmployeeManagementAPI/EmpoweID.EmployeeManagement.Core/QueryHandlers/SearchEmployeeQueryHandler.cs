@@ -23,7 +23,15 @@ namespace EmpoweID.EmployeeManagement.Core.QueryHandlers
             var employees = await this._employeeRepository.GetEmployeesAsync(query.Name, query.Email, query.DepartmentName);
             return new SearchEmployeeQueryResult
             {
-               Employees = employees
+                Employees = employees.Select(x => new EmployeeResponseModel
+                {
+                    Id = x.Id,
+                    DateOfBirth = x.DateOfBirth,
+                    DepartmentName = x.Department?.Name,
+                    Email = x.Email,
+                    DepartmentId = x.Department.Id,
+                    Name = x.Name,
+                }).ToList()
             };
         }
     }
