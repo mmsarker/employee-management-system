@@ -21,7 +21,7 @@ namespace EmpoweID.EmployeeManagement.Core.CommandHandlers
 
         public async ValueTask<CommandResult> HandleAsync(DeleteEmployeeRequest command)
         {
-            var employee = this._employeeRepository.GetEmployeeByIdAsync(command.Id);
+            var employee = await this._employeeRepository.GetEmployeeByIdAsync(command.Id);
             
             if(employee == null)
             {

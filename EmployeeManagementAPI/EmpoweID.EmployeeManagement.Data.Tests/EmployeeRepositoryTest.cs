@@ -12,15 +12,15 @@ namespace EmpoweID.EmployeeManagement.Data.Tests
         public async Task GetAllEmployees_Should_Return_Employees()
         {
             var dbContext = TestDataHelper.GetEmployeeDbContext();
-            TestDataHelper.CreateNewEmployee("Test1", "department1");
+            var employee = TestDataHelper.CreateNewEmployee("Test1", "department1");
 
+            dbContext.Employees.Add(employee);  
             dbContext.SaveChanges();
 
             var employeeRepository = new EmployeeRepository(dbContext);
             var employees = await employeeRepository.GetAllEmployeesAsync();
             Assert.NotNull(employees);
             Assert.Equal(1, employees.Count);
-
         }
 
         [Fact]
@@ -63,7 +63,7 @@ namespace EmpoweID.EmployeeManagement.Data.Tests
             dbContext.SaveChanges();
 
             var employeerepository = new EmployeeRepository(dbContext);
-            var response = await employeerepository.GetEmployeesAsync(null, "Department2", null);
+            var response = await employeerepository.GetEmployeesAsync(null, null, "department2");
             Assert.NotNull(response);
             Assert.Equal(response.Count, 1);
         }
