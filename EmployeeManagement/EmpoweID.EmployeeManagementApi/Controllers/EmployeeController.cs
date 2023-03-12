@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace EmpoweID.EmployeeManagementApi.Controllers
 {
     [ApiController]
-    [Route("api/{controller}")]
+    [Route("api/employee")]
     public class EmployeeController : Controller
     {
         private readonly IQueryHandler<GetEmployeeByIdQuery, GetEmployeeByIdQueryResult> _getEmployeeByIdQueryHandler;
@@ -29,7 +29,7 @@ namespace EmpoweID.EmployeeManagementApi.Controllers
 
         [HttpGet]
         [Route("{id:guid}")]
-        public async Task<IActionResult> GetById([FromQuery] GetEmployeeByIdQuery query)
+        public async Task<IActionResult> GetById([FromRoute] GetEmployeeByIdQuery query)
         {
             var employeeResult = await this._getEmployeeByIdQueryHandler.GetDataAsync(query);
 

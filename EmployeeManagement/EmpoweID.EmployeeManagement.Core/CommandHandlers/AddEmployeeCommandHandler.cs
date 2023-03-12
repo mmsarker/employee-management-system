@@ -21,7 +21,6 @@ namespace EmpoweID.EmployeeManagement.Core.CommandHandlers
 
         public async ValueTask<AddEmployeeResult> HandleAsync(AddEmployeeRequest command)
         {
-
             var employee = new Employee
             {
                 Id = Guid.NewGuid(),
@@ -31,8 +30,12 @@ namespace EmpoweID.EmployeeManagement.Core.CommandHandlers
                 Email = command.Email
             };
 
-            await this._employeeRepository.AddEmployeeAsync(employee);
-            return new AddEmployeeResult();
+            var employeeAdded = await this._employeeRepository.AddEmployeeAsync(employee);
+            
+            return new AddEmployeeResult
+            {
+                Employee = employeeAdded
+            };
         }
     }
 }
