@@ -10,8 +10,9 @@
     <input type="text" asp-for="SearchDepartmentName" placeholder="Department" />
     <input type="submit" value="Filter" />
 </form>
+<br />
 <div>
-    <a href="/Employees/Add">Add New</a>
+    <a href="/Employees/Add" class="btn btn-primary">Add New</a>
 </div>
 @if (Model.employeeListViewModel != null && Model.employeeListViewModel.Employees != null && Model.employeeListViewModel.Employees.Any())
 {

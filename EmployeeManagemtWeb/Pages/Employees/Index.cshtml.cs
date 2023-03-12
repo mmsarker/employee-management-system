@@ -8,7 +8,7 @@ namespace EmployeeManagemntWeb.Pages.Employees
     public class EmployeeListModel : PageModel
     {
         [BindProperty]
-        public EmployeeListViewModel employeeListViewModel { get; set; }
+        public EmployeeListResponse employeeListViewModel { get; set; }
 
         [BindProperty(SupportsGet =true)]
         public string? SearchName { get; set; }
@@ -27,7 +27,7 @@ namespace EmployeeManagemntWeb.Pages.Employees
 
         public async Task OnGet()
         {
-            employeeListViewModel = await this._genericHttpClient.GetAsync<EmployeeListViewModel>
+            employeeListViewModel = await this._genericHttpClient.GetAsync<EmployeeListResponse>
                 ($"employees/search?name={SearchName}&email={SearchEmail}&department={SearchDepartmentName}");
 
         }

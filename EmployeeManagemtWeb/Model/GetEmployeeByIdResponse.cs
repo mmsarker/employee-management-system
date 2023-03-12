@@ -1,6 +1,6 @@
 ﻿namespace EmployeeManagemntWeb.Model
 {
-    public class GetEmployeeByIDViewModel
+    public class GetEmployeeByIdResponse
     {
         public EmployeeViewModel Employee { get; set; }
     }

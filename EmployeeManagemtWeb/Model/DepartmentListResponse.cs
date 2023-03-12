@@ -1,6 +1,6 @@
 ﻿namespace EmployeeManagemntWeb.Model
 {
-    public class DepartmentListViewModel
+    public class DepartmentListResponse
     {
         public List<DepartmentViewModel> Departments { get; set; }
     }

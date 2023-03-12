@@ -20,7 +20,7 @@ namespace EmpoweID.EmployeeManagement.Core.QueryHandlers
 
         public async ValueTask<SearchEmployeeQueryResult> GetDataAsync(SearchEmployeeQuery query)
         {
-            var employees = await this._employeeRepository.GetEmployeesAsync(query.Name, query.Email, query.DepartmentName);
+            var employees = await this._employeeRepository.GetEmployeesAsync(query.Name, query.Email, query.Department);
             return new SearchEmployeeQueryResult
             {
                 Employees = employees.Select(x => new EmployeeResponseModel

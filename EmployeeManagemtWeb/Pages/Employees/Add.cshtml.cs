@@ -23,7 +23,7 @@ namespace EmployeeManagemntWeb.Pages.Employees
 
         public async Task OnGet()
         {
-            var departmentListViewModel = await this._genericHttpClient.GetAsync<DepartmentListViewModel>("departments");
+            var departmentListViewModel = await this._genericHttpClient.GetAsync<DepartmentListResponse>("departments");
             Departments = departmentListViewModel.Departments.Select(x => new SelectListItem
             {
                 Text = x.Name,

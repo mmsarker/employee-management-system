@@ -32,8 +32,7 @@ namespace EmployeeManagemntWeb.Infrastructure
             var httpClient = new HttpClient();
             url = this._baseApiUrl + url;
             var response = await httpClient.PutAsJsonAsync(url, payload);
-            response.EnsureSuccessStatusCode();
-            //return await GetResponseData<TResponse>(response);
+            response.EnsureSuccessStatusCode();         
         }
 
         public async Task DeleteAsync(string url)

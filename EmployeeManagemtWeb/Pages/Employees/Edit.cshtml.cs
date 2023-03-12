@@ -22,9 +22,9 @@ namespace EmployeeManagemntWeb.Pages.Employees
 
         public async Task OnGet(Guid id)
         {
-            var getEmployeeByIDViewModel = await this._genericHttpClient.GetAsync<GetEmployeeByIDViewModel>($"Employees/{id}");
+            var getEmployeeByIDViewModel = await this._genericHttpClient.GetAsync<GetEmployeeByIdResponse>($"Employees/{id}");
             this.EditEmployeeViewModel = getEmployeeByIDViewModel.Employee;
-            var departmentListViewModel = await this._genericHttpClient.GetAsync<DepartmentListViewModel>("departments");
+            var departmentListViewModel = await this._genericHttpClient.GetAsync<DepartmentListResponse>("departments");
             Departments = departmentListViewModel.Departments.Select(x => new SelectListItem
             {
                 Text = x.Name,
